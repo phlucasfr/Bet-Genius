@@ -107,13 +107,13 @@ export class Game {
                         objOfGames.gonnaBetInGame = true;
                         arr.push(objOfGames);
                         await writeSendMessage(objOfGames.homeTeam, objOfGames.awayTeam, objOfGames.time, objOfGames.initialCorner, objOfGames.homeGoals, objOfGames.awayGoals, objOfGames.homeCorner, objOfGames.awayCorner, 2);
-                        console.log(objOfGames.homeTeam + ' x ' + objOfGames.awayTeam);
+                        console.log('Jogo encontrado! Verifique as notificações do seu smartphone...');
 
                     } else if (parseInt(this.time[i]) <= 70 && objOfGames.initialCornerGreen && objOfGames.homeIsNotWin && objOfGames.homeIsPressing && objOfGames.initialCorner > 9) {
                         objOfGames.gonnaBetInGame = true;
                         arr.push(objOfGames);
                         await writeSendMessage(objOfGames.homeTeam, objOfGames.awayTeam, objOfGames.time, objOfGames.initialCorner, objOfGames.homeGoals, objOfGames.awayGoals, objOfGames.homeCorner, objOfGames.awayCorner, 1);
-                        console.log(objOfGames.homeTeam + ' x ' + objOfGames.awayTeam);
+                        console.log('Jogo encontrado! Verifique as notificações do seu smartphone...');
                     };
 
                 } else {
@@ -125,7 +125,7 @@ export class Game {
                         objOfGames.gonnaBetInGame = true;
                         arr.push(objOfGames);
                         await writeSendMessage(objOfGames.homeTeam, objOfGames.awayTeam, objOfGames.time, objOfGames.initialCorner, objOfGames.homeGoals, objOfGames.awayGoals, objOfGames.homeCorner, objOfGames.awayCorner, 3);
-                        console.log(objOfGames.homeTeam + ' x ' + objOfGames.awayTeam);
+                        console.log('Jogo encontrado! Verifique as notificações do seu smartphone...');
                     };
                 };
             };
