@@ -16,7 +16,14 @@ O Bet-Genius é um aplicativo de apostas esportivas que fornece dicas e previsõ
 TELEGRAM_TOKEN="seu telegram token"<br>
 TELEGRAM_ID=seu telegram id<br>
 GAME_SET="settings.json"
-4. Execute o aplicativo: `npm run dev`
+4. Crie um arquivo chamado "settings.json" na raiz do projeto. Este arquivo deve conter as seguintes informações, que podem ser alteradas conforme a necessidade do usuário:<br>{
+"isDefaultGame": boolean,
+"homeIsNotWin": number,
+"homeIsPressing": number,
+"timeToBet": number,
+"initCorners": number
+}
+6. Execute o aplicativo: `npm run dev`
 
 ## Contato
 
