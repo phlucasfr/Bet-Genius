@@ -8,8 +8,14 @@ O Bet-Genius é um aplicativo de apostas esportivas que fornece dicas e previsõ
 - Alertas de eventos importantes
 - Estatísticas detalhadas sobre jogos e equipes
 
-## Instalação
+## Bibliotecas Utilizadas
+As seguintes bibliotecas foram utilizadas neste projeto:
 
+- **playwright**: Utilizada para automatizar testes de navegadores.
+- **telegraf**: Utilizada para construir bots do Telegram.
+- **dotenv**: Utilizada para gerenciar variáveis de ambiente.
+
+## Instalação
 1. Clone o repositório: `git clone https://github.com/phlucasfr/Bet-Genius.git`
 2. Instale as dependências: `npm install`
 3. Crie um arquivo .env na raiz do projeto com as seguintes informações:<br>
