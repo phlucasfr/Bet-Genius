@@ -1,6 +1,6 @@
-# Bet-Genius
+# Bet Genius
 
-O Bet-Genius é um aplicativo de apostas esportivas que fornece dicas e previsões para ajudar os usuários a tomar decisões. Com o Bet-Genius, os usuários podem acompanhar as apostas em tempo real e receber alertas de eventos importantes.
+O Bet Genius é um aplicativo de apostas esportivas que fornece dicas e previsões para ajudar os usuários a tomar decisões. Com o Bet-Genius, os usuários podem acompanhar as apostas em tempo real e receber alertas de eventos importantes.
 
 ## Funcionalidades
 - Dicas e previsões baseadas em algoritmos avançados
