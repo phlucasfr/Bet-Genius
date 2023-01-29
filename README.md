@@ -18,11 +18,11 @@ The following libraries were used in this project:
 ## Installation
 1. Clone the repository: `git clone https://github.com/phlucasfr/Bet-Genius.git`
 2. Install the dependencies: `npm install`
-3. *(optional)* Create a .env file in the root of the project with the following information:<br>
+3. Create a .env file in the root of the project with the following information:<br>
 TELEGRAM_TOKEN="your telegram token"<br>
 TELEGRAM_ID=your telegram id<br>
 GAME_SET="settings.json"
-4. Create a file called "settings.json" in the root of the project. This file should contain the following information, which can be changed as necessary:<br>{
+4. *(optional)* Edit a file called "settings.json" in the root of the project. This file should contain the following information, which can be changed as necessary:<br>{
 "isDefaultGame": boolean,
 "homeIsNotWin": number,
 "homeIsPressing": number,
