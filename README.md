@@ -18,7 +18,7 @@ As seguintes bibliotecas foram utilizadas neste projeto:
 ## Instalação
 1. Clone o repositório: `git clone https://github.com/phlucasfr/Bet-Genius.git`
 2. Instale as dependências: `npm install`
-3. Crie um arquivo .env na raiz do projeto com as seguintes informações:<br>
+3. *(opcional)* Crie um arquivo .env na raiz do projeto com as seguintes informações:<br>
 TELEGRAM_TOKEN="seu telegram token"<br>
 TELEGRAM_ID=seu telegram id<br>
 GAME_SET="settings.json"
@@ -30,6 +30,9 @@ GAME_SET="settings.json"
 "initCorners": number
 }
 6. Execute o aplicativo: `npm run dev`
+
+Observação:
+Para usar os recursos desse bot, será necessário adquirir o token de bot do Telegram e o ID do chat. Visite a documentação da API do Telegram Bot em https://core.telegram.org/bots para obter mais informações sobre como fazer isso.
 
 ## Contato
 
