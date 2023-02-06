@@ -1,6 +1,5 @@
 import { fixTeamsArrName } from "../utils/fixTeamsName";
 import { page } from "../utils/navigationTool";
-
 export class Team {
 
     static homeTeam: Array<string>
@@ -24,5 +23,4 @@ export class Team {
         let fullAwayTeams = await fixTeamsArrName(textAwaysTeams);
         this.awayTeam = fullAwayTeams.map((team: string) => team);
     };
-
 };

@@ -26,13 +26,13 @@ export async function writeSendMessage(
     };
 
     let msg = ("Jogo: " + await homeTeam + " X " + await awayTeam
-        + "                                                                                     Tempo: " + time + 'min'
-        + "                                                                                     Aposta inicial de escanteios: " + initialCorner
-        + "                                                                                     Gols time de casa: " + homeGoals
-        + "                                                                                     Gols time de fora: " + awayGoals
-        + "                                                                                     Escanteios time de casa: " + homeCorner
-        + "                                                                                     Escanteios time de fora: " + awayCorner
-        + "                                                                                     " + blindMsg
+        + "                                           Tempo: " + time + 'min'
+        + "                                           Aposta inicial de escanteios: " + initialCorner
+        + "                                           Gols time de casa: " + homeGoals
+        + "                                           Gols time de fora: " + awayGoals
+        + "                                           Escanteios time de casa: " + homeCorner
+        + "                                           Escanteios time de fora: " + awayCorner
+        + "                                           " + blindMsg
     );
 
     async function sendGamesMsgTimer(msg: string) {

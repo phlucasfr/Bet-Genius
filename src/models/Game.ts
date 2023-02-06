@@ -1,20 +1,11 @@
 import { writeSendMessage } from "../utils/messaging";
-import { browser, page } from "../utils/navigationTool";
+import { updateTeams } from "../utils/updateTeams";
 import { Corner } from "./Corner";
 import { Goal } from "./Goal";
 import { Team } from "./Team";
 import { Time } from "./Time";
-
 export class Game {
 
-    private time: Array<string> = [''];
-    private homeTeam: Array<string> = [''];
-    private awayTeam: Array<string> = [''];
-    private initialCorner: Array<string> = [''];
-    private homeGoals: Array<string> = [''];
-    private awayGoals: Array<string> = [''];
-    private homeCorner: Array<string> = [''];
-    private awayCorner: Array<string> = [''];
     private isDefaultGame: boolean = false;
     private homeIsNotWin: number = 0;
     private homeIsPressing: number = 0;
@@ -48,46 +39,23 @@ export class Game {
         await Goal.listGoals();
     };
 
-    private setGameValues() {
-        this.time = Time.time;
-        this.homeTeam = Team.homeTeam;
-        this.awayTeam = Team.awayTeam;
-        this.initialCorner = Corner.initialCorners;
-        this.homeCorner = Corner.homeCorners;
-        this.awayCorner = Corner.awayCorners;
-        this.homeGoals = Goal.homeGoals;
-        this.awayGoals = Goal.awayGoals;
-    };
-
     //make object of game
     private async makeGame() {
 
         //tenta listar os atributos
         try {
             await this.listAtrOfGames();
+
         } catch (error) {
             // console.error(error);
         };
-
-        //set nos valores no jogo
-        this.setGameValues();
-
-        // fecha o browser
-        (await page).close();
-        (await browser).close();
-
         let arr = [];
-        for (let i = 0; i < this.time.length; i++) {
-            if (parseInt(this.time[i]) > 0 || this.time[i] == 'HT') {
+        for (let i = 0; i < Time.time.length; i++) {
+
+            if (parseInt(Time.time[i]) > 0 || Time.time[i] == 'HT') {
                 let objOfGames = {
-                    time: this.time[i] == 'HT' ? 45 : parseInt(this.time[i]),
-                    initialCorner: parseFloat(this.initialCorner[i]),
-                    homeTeam: this.homeTeam[i],
-                    awayTeam: this.awayTeam[i],
-                    homeGoals: parseInt(this.homeGoals[i]),
-                    awayGoals: parseInt(this.awayGoals[i]),
-                    homeCorner: parseInt(this.homeCorner[i]),
-                    awayCorner: parseInt(this.awayCorner[i]),
+                    time: Time.time[i] == 'HT' ? 45 : parseInt(Time.time[i]),
+                    initialCorner: parseFloat(Corner.initialCorners[i]),
                     initialCornerGreen: false,
                     homeIsNotWin: false,
                     halfInitialCornersInFifteen: false,
@@ -98,36 +66,40 @@ export class Game {
                 //define se os parametros do objeto sÃ£oo personalizados
                 if (this.isDefaultGame) {
 
-                    objOfGames.initialCornerGreen = (parseInt(this.homeCorner[i]) + parseInt(this.awayCorner[i])) > parseInt(this.initialCorner[i]);
-                    objOfGames.homeIsNotWin = parseInt(this.awayGoals[i]) - parseInt(this.homeGoals[i]) === 2;
-                    objOfGames.halfInitialCornersInFifteen = parseInt(this.time[i]) <= 15 && parseInt(this.homeCorner[i]) + parseInt(this.awayCorner[i]) >= (parseInt(this.initialCorner[i]) / 2) && parseInt(this.initialCorner[i]) > 9;
-                    objOfGames.homeIsPressing = objOfGames.homeIsNotWin && parseInt(this.homeCorner[i]) > parseInt(this.awayCorner[i]);
+                    objOfGames.initialCornerGreen = (parseInt(Corner.homeCorners[i]) + parseInt(Corner.awayCorners[i])) > parseInt(Corner.initialCorners[i]);
+                    objOfGames.homeIsNotWin = parseInt(Goal.awayGoals[i]) - parseInt(Goal.homeGoals[i]) === 2;
+                    objOfGames.halfInitialCornersInFifteen = parseInt(Time.time[i]) <= 15 && parseInt(Corner.homeCorners[i]) + parseInt(Corner.awayCorners[i]) >= (parseInt(Corner.initialCorners[i]) / 2) && parseInt(Corner.initialCorners[i]) > 9;
+                    objOfGames.homeIsPressing = objOfGames.homeIsNotWin && parseInt(Corner.homeCorners[i]) > parseInt(Corner.awayCorners[i]);
 
                     if (objOfGames.homeIsNotWin && objOfGames.homeIsPressing && objOfGames.halfInitialCornersInFifteen && objOfGames.initialCorner > 9) {
                         objOfGames.gonnaBetInGame = true;
                         arr.push(objOfGames);
-                        await writeSendMessage(objOfGames.homeTeam, objOfGames.awayTeam, objOfGames.time, objOfGames.initialCorner, objOfGames.homeGoals, objOfGames.awayGoals, objOfGames.homeCorner, objOfGames.awayCorner, 2);
-                        console.log('Jogo encontrado! Verifique as notificações do seu smartphone...');
+                        await writeSendMessage(Team.homeTeam[i], Team.awayTeam[i], objOfGames.time, Corner.initialCorners[i], Goal.homeGoals[i], Goal.awayGoals[i], Corner.homeCorners[i], Corner.awayCorners[i], 2);
+                        console.log('Jogo encontrado! Verifique as notificaÃ§Ãµes do seu smartphone...');
+                        await updateTeams(Team.homeTeam[i], Number(Corner.homeCorners[i]));
 
-                    } else if (parseInt(this.time[i]) <= 70 && objOfGames.initialCornerGreen && objOfGames.homeIsNotWin && objOfGames.homeIsPressing && objOfGames.initialCorner > 9) {
+                    } else if (parseInt(Time.time[i]) <= 70 && objOfGames.initialCornerGreen && objOfGames.homeIsNotWin && objOfGames.homeIsPressing && objOfGames.initialCorner > 9) {
                         objOfGames.gonnaBetInGame = true;
                         arr.push(objOfGames);
-                        await writeSendMessage(objOfGames.homeTeam, objOfGames.awayTeam, objOfGames.time, objOfGames.initialCorner, objOfGames.homeGoals, objOfGames.awayGoals, objOfGames.homeCorner, objOfGames.awayCorner, 1);
-                        console.log('Jogo encontrado! Verifique as notificações do seu smartphone...');
+                        await writeSendMessage(Team.homeTeam, Team.awayTeam, objOfGames.time, Corner.initialCorners[i], Goal.homeGoals, Goal.awayGoals, Corner.homeCorners[i], Corner.awayCorners[i], 1);
+                        console.log('Jogo encontrado! Verifique as notificaÃ§Ãµes do seu smartphone...');
+                        await updateTeams(Team.homeTeam[i], Number(Corner.homeCorners[i]));
                     };
 
                 } else {
 
-                    objOfGames.homeIsNotWin = parseInt(this.awayGoals[i]) - parseInt(this.homeGoals[i]) === this.homeIsNotWin;
-                    objOfGames.homeIsPressing = objOfGames.homeIsNotWin && parseInt(this.homeCorner[i]) - parseInt(this.awayCorner[i]) >= this.homeIsPressing;
+                    objOfGames.homeIsNotWin = parseInt(Goal.awayGoals[i]) - parseInt(Goal.homeGoals[i]) === this.homeIsNotWin;
+                    objOfGames.homeIsPressing = objOfGames.homeIsNotWin && parseInt(Corner.homeCorners[i]) - parseInt(Corner.awayCorners[i]) >= this.homeIsPressing;
 
-                    if (objOfGames.homeIsNotWin && objOfGames.homeIsPressing && parseInt(this.time[i]) >= this.timeToBet && parseFloat(this.initialCorner[i]) >= this.initCorners) {
+                    if (objOfGames.homeIsNotWin && objOfGames.homeIsPressing && parseInt(Time.time[i]) >= this.timeToBet && parseFloat(Corner.initialCorners[i]) >= this.initCorners) {
                         objOfGames.gonnaBetInGame = true;
                         arr.push(objOfGames);
-                        await writeSendMessage(objOfGames.homeTeam, objOfGames.awayTeam, objOfGames.time, objOfGames.initialCorner, objOfGames.homeGoals, objOfGames.awayGoals, objOfGames.homeCorner, objOfGames.awayCorner, 3);
-                        console.log('Jogo encontrado! Verifique as notificações do seu smartphone...');
+                        await writeSendMessage(Team.homeTeam, Team.awayTeam, objOfGames.time, Corner.initialCorners[i], Goal.homeGoals[i], Goal.awayGoals[i], Corner.homeCorners[i], Corner.awayCorners[i], 3);
+                        console.log('Jogo encontrado! Verifique as notificaÃ§Ãµes do seu smartphone...');
+                        await updateTeams(Team.homeTeam[i], Number(Corner.homeCorners[i]));
                     };
                 };
+
             };
         };
     };

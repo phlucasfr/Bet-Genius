@@ -32,7 +32,7 @@ function askAgain() {
 
         function getValidInput() {
             if (state.currentQuestion === 1) {
-                rl.question('Por qual diferença de gols o time da casa deve estar perdendo? (1,2,3...): ', (answer: any) => {
+                rl.question('Por qual diferença de gols o time da casa deve estar perdendo? (1,2,3...): ', (answer: string) => {
                     if (isValidNumber(answer) && (Number(answer) > 0)) {
                         objAnswers.homeIsNotWin = Number(answer);
                         state.currentQuestion++;
@@ -43,7 +43,7 @@ function askAgain() {
                     };
                 });
             } else if (state.currentQuestion === 2) {
-                rl.question('Qual o mínimo de escanteios o time da casa deve ter a mais? (1,2,3...): ', (answer: any) => {
+                rl.question('Qual o mínimo de escanteios o time da casa deve ter a mais? (1,2,3...): ', (answer: string) => {
                     if (isValidNumber(answer) && (Number(answer) > 0)) {
                         objAnswers.homeIsPressing = Number(answer);
                         state.currentQuestion++;
@@ -54,7 +54,7 @@ function askAgain() {
                     };
                 });
             } else if (state.currentQuestion === 3) {
-                rl.question('Informe o número mínimo de escanteios iniciais que deveriam estar previstos para o jogo: (Mínimo 9): ', (answer: any) => {
+                rl.question('Informe o número mínimo de escanteios iniciais que deveriam estar previstos para o jogo: (Mínimo 9): ', (answer: string) => {
                     if (isValidNumber(answer) && (Number(answer) >= 9)) {
                         objAnswers.initCorners = Number(answer);
                         state.currentQuestion++;
@@ -65,7 +65,7 @@ function askAgain() {
                     };
                 });
             } else if (state.currentQuestion === 4) {
-                rl.question('Qual deve ser o tempo mínimo de jogo? (Deve estar entre 1 e 90): ', (answer: any) => {
+                rl.question('Qual deve ser o tempo mínimo de jogo? (Deve estar entre 1 e 90): ', (answer: string) => {
                     if (isValidNumber(answer) && (Number(answer) >= 1 && Number(answer) <= 90)) {
                         objAnswers.timeToBet = Number(answer);
                         rl.close();
@@ -96,7 +96,7 @@ function askAgain() {
         } else if (lowerAnswer === 'n') {
             objAnswers.isDefaultGame = false;
 
-            rl.question('Deseja usar as ultimas configurações do bot? (S/N): ', (answer: any) => {
+            rl.question('Deseja usar as ultimas configurações do bot? (S/N): ', (answer: string) => {
                 const lowerAnswer = answer.toLowerCase()
 
                 if (lowerAnswer === 's') {
@@ -156,4 +156,3 @@ const start = async () => {
         await new Promise((resolve) => setTimeout(resolve, 120000));
     };
 };
-

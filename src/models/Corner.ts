@@ -1,6 +1,5 @@
 import { defaultFixNames } from "../utils/defaultFixNames";
 import { page } from "../utils/navigationTool";
-
 export class Corner {
 
     static initialCorners: Array<string>;

@@ -1,7 +1,7 @@
 {
     "isDefaultGame": false,
-    "homeIsNotWin": 2,
-    "homeIsPressing": 2,
-    "timeToBet": 2,
+    "homeIsNotWin": 1,
+    "homeIsPressing": 1,
+    "timeToBet": 15,
     "initCorners": 9
 }

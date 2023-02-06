@@ -1,6 +1,5 @@
 import { defaultFixNames } from "../utils/defaultFixNames";
 import { page } from "../utils/navigationTool";
-
 export class Goal {
 
     static homeGoals: Array<string>;
@@ -22,5 +21,4 @@ export class Goal {
         let fixedAwayGoals = await defaultFixNames(nowAwayGoals, false);
         this.awayGoals = fixedAwayGoals.map((goal: string) => goal);
     };
-
 };

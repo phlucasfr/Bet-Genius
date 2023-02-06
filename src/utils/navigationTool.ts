@@ -1,8 +1,8 @@
-import { webkit } from "playwright";
+import { Page, webkit } from "playwright";
 
 const urlToGo: string = 'https://lv.scorebing.com/corner';
 export const browser = webkit.launch({ headless: true });
-export const page: any = navigateToUrl();
+export const page: Promise<Page> = navigateToUrl();
 
 async function navigateToUrl() {
 
@@ -15,7 +15,5 @@ async function navigateToUrl() {
     } catch (error) {
         // console.error(`Error navigating to ${urlToGo}: ${error}`);
     };
-
-    await (await navigate).waitForURL(urlToGo);
     return navigate;
 };
