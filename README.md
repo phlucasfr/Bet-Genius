@@ -1,6 +1,9 @@
-# Bet Genius - Version 1.0.1
+# Bet Genius 
 
 Bet Genius is a sports betting app that provides tips and predictions to help users make decisions. With Bet Genius, users can track bets in real-time and receive alerts for important events.
+
+## Version 1.0.2
+We are now implementing an API to save the average number of corner kicks for home teams in the Bet Genius app. With this feature, users will be able to access and analyze important data on team performance, enabling them to make informed betting decisions. 
 
 ## Features
 - Tips and predictions based on advanced algorithms
