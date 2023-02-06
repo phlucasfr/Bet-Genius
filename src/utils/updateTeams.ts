@@ -1,4 +1,4 @@
-import fetch, { Body } from 'node-fetch';
+import fetch from 'node-fetch';
 
 export async function updateTeams(name_tem: string, qtdcor_tem: number) {
     await fetch('http://localhost:3333/createteam/', {
@@ -12,20 +12,12 @@ export async function updateTeams(name_tem: string, qtdcor_tem: number) {
             "qtdcor_tem": qtdcor_tem,
             "medcor_tem": qtdcor_tem
         })
-
-
     })
         .then(response => response.json())
         .then(data => {
-
-
-
             console.log(data);
-
-
         })
         .catch(error => {
             console.log(error);
-
         });
 };

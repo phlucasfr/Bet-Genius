@@ -6,11 +6,11 @@ import { Team } from "./Team";
 import { Time } from "./Time";
 export class Game {
 
-    private isDefaultGame: boolean = false;
-    private homeIsNotWin: number = 0;
-    private homeIsPressing: number = 0;
-    private timeToBet: number = 0;
-    private initCorners: number = 0
+    private isDefaultGame: boolean;
+    private homeIsNotWin: number;
+    private homeIsPressing: number;
+    private timeToBet: number;
+    private initCorners: number;
 
     constructor(settings: {
         isDefaultGame: boolean,
@@ -45,7 +45,6 @@ export class Game {
         //tenta listar os atributos
         try {
             await this.listAtrOfGames();
-
         } catch (error) {
             // console.error(error);
         };
@@ -76,14 +75,11 @@ export class Game {
                         arr.push(objOfGames);
                         await writeSendMessage(Team.homeTeam[i], Team.awayTeam[i], objOfGames.time, Corner.initialCorners[i], Goal.homeGoals[i], Goal.awayGoals[i], Corner.homeCorners[i], Corner.awayCorners[i], 2);
                         console.log('Jogo encontrado! Verifique as notificações do seu smartphone...');
-                        await updateTeams(Team.homeTeam[i], Number(Corner.homeCorners[i]));
-
                     } else if (parseInt(Time.time[i]) <= 70 && objOfGames.initialCornerGreen && objOfGames.homeIsNotWin && objOfGames.homeIsPressing && objOfGames.initialCorner > 9) {
                         objOfGames.gonnaBetInGame = true;
                         arr.push(objOfGames);
                         await writeSendMessage(Team.homeTeam, Team.awayTeam, objOfGames.time, Corner.initialCorners[i], Goal.homeGoals, Goal.awayGoals, Corner.homeCorners[i], Corner.awayCorners[i], 1);
                         console.log('Jogo encontrado! Verifique as notificações do seu smartphone...');
-                        await updateTeams(Team.homeTeam[i], Number(Corner.homeCorners[i]));
                     };
 
                 } else {
@@ -96,10 +92,10 @@ export class Game {
                         arr.push(objOfGames);
                         await writeSendMessage(Team.homeTeam, Team.awayTeam, objOfGames.time, Corner.initialCorners[i], Goal.homeGoals[i], Goal.awayGoals[i], Corner.homeCorners[i], Corner.awayCorners[i], 3);
                         console.log('Jogo encontrado! Verifique as notificações do seu smartphone...');
-                        await updateTeams(Team.homeTeam[i], Number(Corner.homeCorners[i]));
                     };
                 };
 
+                await updateTeams(Team.homeTeam[i], Number(Corner.homeCorners[i]));
             };
         };
     };

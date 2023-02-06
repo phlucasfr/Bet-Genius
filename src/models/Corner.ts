@@ -22,12 +22,11 @@ export class Corner {
         let nowHomeCorners = (await page).locator('td.text-center.blue-color').allTextContents();
         let fixedHomeCorners = await defaultFixNames(nowHomeCorners, true);
         ; this.homeCorners = fixedHomeCorners.map((corner: string) => corner);
-    }
+    };
 
     private static async listAwayCorners() {
         let nowAwayCorners = (await page).locator('td.text-center.blue-color').allTextContents();
         let fixedAwayCorners = await defaultFixNames(nowAwayCorners, false);
         this.awayCorners = fixedAwayCorners.map((corner: string) => corner);
     };
-
 };

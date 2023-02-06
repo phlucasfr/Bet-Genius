@@ -143,10 +143,13 @@ function askAgain() {
 
 askAgain();
 
+
 const start = async () => {
+
+    console.log('Bot iniciado!\n');
+
     while (true) {
         try {
-            console.log('Bot iniciado!\n');
             console.log('Buscando jogos, aguarde...');
 
             await startApp.startBot();
